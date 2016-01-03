@@ -11,6 +11,8 @@ function Rtorrent(option) {
     this.path = (option && option['path']) || "/RPC2";
     this.user = (option && option['user']) || null;
     this.pass = (option && option['pass']) || null;
+    this.isSecure = (option && option['isSecure']) || false;
+    this.localAddress = (option && option['localAddress']) || null;
     this.client = null;
     
     if (this.mode == 'xmlrpc')
@@ -34,8 +36,12 @@ function Rtorrent(option) {
                 pass: this.pass
             }
         }
-
-        this.client = xmlrpc.createClient(options);
+        if (this.isSecure){
+            this.client = xmlrpc.createSecureClient(options);
+        }else{
+            this.client = xmlrpc.createClient(options);    
+        }
+        
     }
     else
     {
