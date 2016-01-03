@@ -21,6 +21,7 @@ function Rtorrent(option) {
             host: this.host,
             port: this.port,
             path: this.path,
+            localAddress: this.localAddress,
             headers: {
                 'User-Agent': 'NodeJS XML-RPC Client',
                 'Content-Type': 'text/xml',
